@@ -12,18 +12,25 @@
       <h1>Weather Dashboard</h1>
     </header>
     <main>
-      <form>
-        <div class="input-group">
-          <label for="city">Name of the city</label>
-          <div>
-            <input type="text" name="city" id="city" placeholder="Sydney" />
+      <div id="mymain">
+        <form>
+          <div class="input-group">
+            <label for="city">Name of the city</label>
+            <div>
+              <input type="text" name="city" id="city" placeholder="Sydney" />
+            </div>
           </div>
-        </div>
 
-        <div><button id="search">Search</button></div>
-      </form>
-      
-      <div id="display"></div>
+          <div><button id="search">Search</button></div>
+        </form>
+
+        <div id="display"></div>
+        <ol></ol>
+      </div>
+
+      <div id="lastPage" class="hide">
+        <h2>Todays Weather</h2>
+      </div>
     </main>
 
     <script src="./assets/script.js"></script>

@@ -9,11 +9,34 @@ h1 {
 }
 .input-group {
   margin: 30px;
-
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
-.search {
-  margin: 20px;
-  padding: 20px;
-  font-size: 1.5rem;
+button {
+  margin-left: 40px;
+  padding: 5px;
+  font-size: 1rem;
+  background-color: rgb(134, 134, 245);
+  color: white;
+}
+input {
+  margin-top: 23px;
+  font-size: 1rem;
+}
+
+#mymain {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: solid black 0.5px;
+  width: 350px;
+}
+
+.hide {
+  display: none;
+}
+
+.start {
+  text-align: center;
+  border: solid black 1px;
+  width: 400px;
 }
