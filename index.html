@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/style.css" />
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
+      integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -23,14 +34,16 @@
 
           <div><button id="search">Search</button></div>
         </form>
-
-        <div id="display"></div>
-        <ol></ol>
       </div>
 
-      <div id="lastPage" class="hide">
+      <div id="display">
+        <section id="today"></section>
+        <section id="forecast"></section>
+      </div>
+
+      <!-- <div id="todaysWeather" class="hide">
         <h2>Todays Weather</h2>
-      </div>
+      </div> -->
     </main>
 
     <script src="./assets/script.js"></script>
