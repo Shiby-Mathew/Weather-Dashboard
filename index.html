@@ -4,46 +4,148 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="./assets/style.css" />
-    <!-- <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
-      integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script> -->
+
     <script
       src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
       integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link href="./assets/style.css" rel="stylesheet" />
+    <title>Weather Dashboard</title>
   </head>
+
   <body>
-    <header>
-      <h1>Weather Dashboard</h1>
-    </header>
-    <main>
-      <div id="mymain">
-        <form>
-          <div class="input-group">
-            <label for="city">Name of the city</label>
-            <div>
-              <input type="text" name="city" id="city" placeholder="Sydney" />
+    <main class="m-5 text-align-center">
+      <div class="row m-0 d-block d-md-flex">
+        <section class="col-12 col-md-3">
+          <form id="search-form">
+            <h2>Search for a City:</h2>
+
+            <input
+              type="text"
+              id="city-search"
+              placeholder="Enter a City Name"
+              class="w-100 mb-2"
+            />
+            <button
+              type="submit"
+              id="submit"
+              class="w-100 mb-3 btn btn-secondary"
+            >
+              Search
+            </button>
+          </form>
+          <!-- <div id="search-container"></div>
+                <button id="clear-btn" class="btn btn-danger w-100 mt-2 mb-4">Clear Search History</button> -->
+        </section>
+        <section class="col-12 col-md-9">
+          <div id="current-weather" class="p-3 mb-2">
+            <h2 id="current-heading">Current Weather</h2>
+            <div class="row">
+              <div class="data-container col-4 d-none" id="current-data">
+                <div id="date">Date :</div>
+                <div id="temp">Temp :</div>
+                <div id="wind">Wind :</div>
+                <div id="humid">Humidity :</div>
+                <!-- <img src="" id="card1-icon" class="card-icon"></img> -->
+              </div>
+              <div class="col-4" id="newElement"></div>
+              <div id="current-icon" class="col-4"></div>
             </div>
           </div>
 
-          <div><button id="search">Search</button></div>
-        </form>
-      </div>
+          <div id="forecast" class="p-3">
+            <h2 class="d-block">5-Day Forecast</h2>
+            <div class="row justify-content-around d-block d-xl-flex mr-0">
+              <!-- text-center d-none col m-2 p-0 -->
+              <div id="card1" class="text-center d-none col m-2 p-0">
+                <div class="card-body">
+                  <div id="card1-title" class="card-title"></div>
+                  <img
+                    src=""
+                    id="card1-icon"
+                    alt="weather-icon"
+                    class="card-icon"
+                  />
 
-      <div id="display">
-        <section id="today"></section>
-        <section id="forecast"></section>
-      </div>
+                  <div id="card1-date"></div>
+                  <div id="card1-temp"></div>
+                  <div id="card1-wind"></div>
+                  <div id="card1-humid"></div>
+                </div>
+              </div>
+              <div id="card2" class="text-center d-none col m-2 p-0">
+                <div class="card-body">
+                  <div id="card2-title" class="card-title"></div>
+                  <img
+                    src=""
+                    id="card2-icon"
+                    class="card-icon"
+                    alt="weather-icon"
+                  />
 
-      <!-- <div id="todaysWeather" class="hide">
-        <h2>Todays Weather</h2>
-      </div> -->
+                  <div id="card2-date"></div>
+                  <div id="card2-temp"></div>
+                  <div id="card2-wind"></div>
+                  <div id="card2-humid"></div>
+                </div>
+              </div>
+              <div id="card3" class="text-center d-none col m-2 p-0">
+                <div class="card-body">
+                  <div id="card3-title" class="card-title"></div>
+                  <img
+                    src=""
+                    id="card3-icon"
+                    class="card-icon"
+                    alt="weather-icon"
+                  />
+
+                  <div id="card3-date"></div>
+                  <div id="card3-temp"></div>
+                  <div id="card3-wind"></div>
+                  <div id="card3-humid"></div>
+                </div>
+              </div>
+              <div id="card4" class="text-center d-none col m-2 p-0">
+                <div class="card-body">
+                  <div id="card4-title" class="card-title"></div>
+                  <img
+                    src=""
+                    id="card4-icon"
+                    class="card-icon"
+                    alt="weather-icon"
+                  />
+
+                  <div id="card4-date"></div>
+                  <div id="card4-temp"></div>
+                  <div id="card4-wind"></div>
+                  <div id="card4-humid"></div>
+                </div>
+              </div>
+              <div id="card5" class="text-center d-none col m-2 p-0">
+                <div class="card-body">
+                  <div id="card5-title" class="card-title"></div>
+                  <img
+                    src=""
+                    id="card5-icon"
+                    class="card-icon"
+                    alt="weather-icon"
+                  />
+
+                  <div id="card5-date"></div>
+                  <div id="card5-temp"></div>
+                  <div id="card5-wind"></div>
+                  <div id="card5-humid"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
     <script src="./assets/script.js"></script>

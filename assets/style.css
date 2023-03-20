@@ -1,42 +1,105 @@
+body {
+  background-color: #c3e3f6;
+  
+}
+
 header {
-  text-align: center;
-  padding: 2%;
-  background-color: blue;
-  color: white;
+  height: 150px;
+  background-color: #04a7e2;
 }
-h1 {
-  font-size: 250%;
-}
-.input-group {
-  margin: 34px;
-  font-size: 1.4rem;
-}
-button {
-  margin-left: 40px;
-  padding: 5px;
-  font-size: 1rem;
-  background-color: rgb(134, 134, 245);
-  color: white;
-}
-input {
-  margin-top: 23px;
-  font-size: 1rem;
-}
-
-#mymain {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* border: solid black 0.5px; */
-  width: 350px;
-}
-
+/* 
 .hide {
   display: none;
 }
 
 .start {
   text-align: center;
-  border: solid black 1px;
-  width: 400px;
+} */
+
+
+.error-msg {
+  color: red;
+  text-align: center;
+}
+
+.uvi-low {
+  background-color: rgb(22, 224, 130);
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+.uvi-mid {
+  background-color: rgb(211, 236, 120);
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+.uvi-high {
+  background-color: rgb(238, 66, 36);
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+.uvi-vhigh {
+  background-color: rgb(196, 2, 2);
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+.card {
+  border: none;
+  background-color: transparent;
+  height: 165px;
+}
+
+.card-body {
+  background-color: rgb(194, 191, 191);
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 7px;
+  box-shadow: 5px 5px 3px grey;
+}
+
+.card-title {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.card-icon {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#current-weather {
+  background-color: white;
+  border: 3px solid rgb(31, 30, 30);
+  border-radius: 10px;
+  box-shadow: 5px 5px 3px grey;
+}
+#current-icon {
+  text-align: center;
+}
+
+#current-icon img {
+  width: 100px;
+  height: 100px;
+}
+
+.search-btn {
+  color: white;
+  background-color: rgb(143, 151, 223);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+}
+
+.search-btn:hover {
+  background-color: rgb(38, 39, 53);
+}
+
+@media (min-width: 1200px) {
+  .col-9 .row {
+    margin-right: -15px !important;
+  }
 }
