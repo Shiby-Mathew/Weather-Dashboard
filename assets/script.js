@@ -12,9 +12,12 @@ function searchByCity(event) {
   //check here
   event.preventDefault();
   var city = document.querySelector("#city-search").value;
+  city = city.trim();
 
   if (city) {
     getFeaturedRepos(city);
+  } else {
+    alert("Please enter a valid city name");
   }
 }
 
@@ -69,59 +72,31 @@ function forecastWeather(lat, lon) {
 }
 
 //Display forecast weather for 5 days
+
 function displayForecast(data) {
-  //forecast weather --First Day
-  var temp1 = document.getElementById("card1-temp");
-  var wind1 = document.getElementById("card1-wind");
-  var humid1 = document.getElementById("card1-humid");
-  //  var date1 = document.getElementById("card1-date");
-  var iconLink = `https://api.openweathermap.org/img/w/${data.list[1].weather[0].icon}.png`;
-  document.getElementById("card1-icon").src = iconLink;
-  //
-  // date1.textContent = `Date is:  ${data.list[1].dt_txt}`;
-  temp1.textContent = `Temp is:  ${data.list[1].main.temp} °C`;
-  wind1.textContent = `Wind is:  ${data.list[1].wind.speed} km/h`;
-  humid1.textContent = `Humidity is:  ${data.list[1].main.humidity}%`;
-
-  //forecast weather --second Day
-  var temp2 = document.getElementById("card2-temp");
-  var wind2 = document.getElementById("card2-wind");
-  var humid2 = document.getElementById("card2-humid");
-  var iconLink = `https://api.openweathermap.org/img/w/${data.list[9].weather[0].icon}.png`;
-  document.getElementById("card2-icon").src = iconLink;
-  temp2.textContent = `Temp is:  ${data.list[9].main.temp} °C`;
-  wind2.textContent = `Wind is:  ${data.list[9].wind.speed} km/h`;
-  humid2.textContent = `Humidity is:  ${data.list[9].main.humidity}%`;
-
-  //forecast weather --third Day
-  var temp3 = document.getElementById("card3-temp");
-  var wind3 = document.getElementById("card3-wind");
-  var humid3 = document.getElementById("card3-humid");
-  var iconLink = `https://api.openweathermap.org/img/w/${data.list[17].weather[0].icon}.png`;
-  document.getElementById("card3-icon").src = iconLink;
-  temp3.textContent = `Temp is:  ${data.list[17].main.temp} °C`;
-  wind3.textContent = `Wind is:  ${data.list[17].wind.speed} km/h`;
-  humid3.textContent = `Humidity is:  ${data.list[17].main.humidity}%`;
-
-  //forecast weather --fourth Day
-  var temp4 = document.getElementById("card4-temp");
-  var wind4 = document.getElementById("card4-wind");
-  var humid4 = document.getElementById("card4-humid");
-  var iconLink = `https://api.openweathermap.org/img/w/${data.list[25].weather[0].icon}.png`;
-  document.getElementById("card4-icon").src = iconLink;
-  temp4.textContent = `Temp is:  ${data.list[25].main.temp} °C`;
-  wind4.textContent = `Wind is:  ${data.list[25].wind.speed} km/h`;
-  humid4.textContent = `Humidity is:  ${data.list[25].main.humidity}%`;
-
-  //forecast weather --fifth Day
-  var temp5 = document.getElementById("card5-temp");
-  var wind5 = document.getElementById("card5-wind");
-  var humid5 = document.getElementById("card5-humid");
-  var iconLink = `https://api.openweathermap.org/img/w/${data.list[33].weather[0].icon}.png`;
-  document.getElementById("card5-icon").src = iconLink;
-  temp5.textContent = `Temp is:  ${data.list[33].main.temp} °C`;
-  wind5.textContent = `Wind is:  ${data.list[33].wind.speed} km/h`;
-  humid5.textContent = `Humidity is:  ${data.list[33].main.humidity}%`;
+  var j = 1;
+  for (var i = 1; i < 6; i++) {
+    var temp = document.getElementById("card" + i + "-temp");
+    var wind = document.getElementById("card" + i + "-wind");
+    var humid = document.getElementById("card" + i + "-humid");
+    var date = document.getElementById("card" + i + "-date");
+    var iconLink = `https://api.openweathermap.org/img/w/${data.list[j].weather[0].icon}.png`;
+    document.getElementById("card" + i + "-icon").src = iconLink;
+    //
+    // date1.textContent = `Date is:  ${data.list[1].dt_txt}`;
+    var dateVal = data.list[j].dt_txt.split(" ");
+    var foreDate = dayjs(dateVal[0]).format("DD/MM/YYYY");
+    date.textContent = foreDate;
+    temp.textContent = `Temp is:  ${data.list[j].main.temp} °C`;
+    wind.textContent = `Wind is:  ${data.list[j].wind.speed} km/h`;
+    humid.textContent = `Humidity is:  ${data.list[j].main.humidity}%`;
+    j = j + 8;
+  }
 }
+
+//Local Storage to be done
+
+//display history in buttons nad click on that button again go for search
+//delete localstorage
 
 searchEl.addEventListener("click", searchByCity);
