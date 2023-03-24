@@ -3,25 +3,27 @@ var tempEl = document.getElementById("temp");
 var windEl = document.getElementById("wind");
 var humdEl = document.getElementById("humid");
 var dateEl = document.getElementById("date");
-//var searchForm = document.getElementById("search-form");
+var searchForm = document.getElementById("search-form");
 var historyButton = document.getElementById("history-btn");
 
 var currentHeading = document.getElementById("current-heading");
 var currentWeather = document.getElementById("current-weather");
+var weatherKey = "cb4e1eb2ddfd04be05240608cc0d201b";
 
 //Click event calling function
 function searchByCity(event) {
   //check here
   event.preventDefault();
   var city = document.getElementById("city-search").value.trim();
-  //city = city.trim();
+
   if (city) {
     getWeatherApi(city);
   } else {
     alert("Please enter a valid city name");
   }
-
+  city = city.charAt(0).toUpperCase() + city.slice(1);
   saveSearchCity(city);
+  document.getElementById("city-search").value = "";
 }
 
 //Get Current weather input from user
@@ -29,7 +31,9 @@ var getWeatherApi = function (cityName) {
   var requestUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
-    " &units=metric&limit=5&appid=cb4e1eb2ddfd04be05240608cc0d201b";
+    " &units=metric&limit=5&appid=" +
+    weatherKey;
+
   fetch(requestUrl)
     .then(function (response) {
       if (response.ok) {
@@ -73,7 +77,7 @@ var currrentWeather = function (data) {
 
 //Fetch data for Forecast weather
 function forecastWeather(lat, lon) {
-  var forecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=cb4e1eb2ddfd04be05240608cc0d201b`;
+  var forecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${weatherKey}`;
   fetch(forecastAPI)
     .then(function (response) {
       if (response.ok) {
@@ -120,19 +124,22 @@ function saveSearchCity(cityName) {
 function displaySearchCity() {
   var searchCity = JSON.parse(localStorage.getItem("searchCity")) || [];
   console.log(searchCity);
-  // for (var i = 0; i < searchCity.length; i++) {
-  //   var cityName = searchCity[i];
-  //   var searchHistoryButton = document.createElement("button");
 
-  //   searchHistoryButton.setAttribute("value", cityName);
-  //   searchHistoryButton.setAttribute(
-  //     "style",
-  //     "padding:8px; margin:8px;font-size:16px;width:100%;background-color:gray"
-  //   );
-  //   searchHistoryButton.textContent = cityName;
-  //   searchForm.appendChild(searchHistoryButton);
-  // }
-  // searchHistoryButton.addEventListener("click", searchByCity);
+  if (searchCity.length > 0) {
+    for (var i = 0; i < searchCity.length; i++) {
+      var cityName = searchCity[i];
+      var searchHistoryButton = document.createElement("button");
+
+      searchHistoryButton.setAttribute("value", cityName);
+      searchHistoryButton.setAttribute(
+        "style",
+        "padding:5px; margin:4px;font-size:16px;width:100%;background-color: rgb(194, 191, 191);border-radius: 10px; box-shadow: 5px 5px 3px grey;"
+      );
+      searchHistoryButton.textContent = cityName;
+      searchForm.appendChild(searchHistoryButton);
+      // historyButton.textContent = searchCity[i];
+    }
+  }
 }
 //
 
@@ -141,8 +148,8 @@ function deleteSearchHistory() {
 }
 
 //Local Storage to be done
-//display history in buttons nad click on that button again go for search
+//display history in buttons and click on that button again go for search
 //delete localstorage
 
 searchEl.addEventListener("click", searchByCity);
-historyButton.addEventListener("click", searchByCity);
+//historyButton.addEventListener("click", searchByCity);
