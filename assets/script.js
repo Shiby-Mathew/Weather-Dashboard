@@ -3,26 +3,26 @@ var tempEl = document.getElementById("temp");
 var windEl = document.getElementById("wind");
 var humdEl = document.getElementById("humid");
 var dateEl = document.getElementById("date");
-var searchForm = document.getElementById("search-form");
-var historyButton = document.getElementById("history-btn");
-
+var searchHistoryEl = document.querySelector("#history-btn");
+var clearHistory = document.getElementById("clear-btn");
+var searchContainerEl = document.getElementById("search-container");
 var currentHeading = document.getElementById("current-heading");
 var currentWeather = document.getElementById("current-weather");
 var weatherKey = "cb4e1eb2ddfd04be05240608cc0d201b";
 
 //Click event calling function
 function searchByCity(event) {
-  //check here
+  
   event.preventDefault();
   var city = document.getElementById("city-search").value.trim();
+  city = city.charAt(0).toUpperCase() + city.slice(1);
 
   if (city) {
     getWeatherApi(city);
   } else {
     alert("Please enter a valid city name");
   }
-  city = city.charAt(0).toUpperCase() + city.slice(1);
-  saveSearchCity(city);
+
   document.getElementById("city-search").value = "";
 }
 
@@ -40,6 +40,7 @@ var getWeatherApi = function (cityName) {
         response.json().then(function (data) {
           console.log(data);
           currrentWeather(data);
+          saveSearchCity(cityName);
         });
       } else {
         alert("Error." + response.statusText);
@@ -123,9 +124,10 @@ function saveSearchCity(cityName) {
 
 function displaySearchCity() {
   var searchCity = JSON.parse(localStorage.getItem("searchCity")) || [];
-  console.log(searchCity);
 
   if (searchCity.length > 0) {
+    searchContainerEl.value = "";
+
     for (var i = 0; i < searchCity.length; i++) {
       var cityName = searchCity[i];
       var searchHistoryButton = document.createElement("button");
@@ -136,20 +138,27 @@ function displaySearchCity() {
         "padding:5px; margin:4px;font-size:16px;width:100%;background-color: rgb(194, 191, 191);border-radius: 10px; box-shadow: 5px 5px 3px grey;"
       );
       searchHistoryButton.textContent = cityName;
-      searchForm.appendChild(searchHistoryButton);
-      // historyButton.textContent = searchCity[i];
+      searchContainerEl.appendChild(searchHistoryButton);
     }
+  } else {
+    searchContainerEl.value = "";
   }
 }
 //
 
 function deleteSearchHistory() {
   localStorage.clear();
+  location.reload();
+  displaySearchCity();
+}
+function searchAgain(event) {
+  getWeatherApi(event.target.value);
+  // console.log(event.target.value);
 }
 
-//Local Storage to be done
+// if search city is repeating show only once as in the history button
 //display history in buttons and click on that button again go for search
-//delete localstorage
 
 searchEl.addEventListener("click", searchByCity);
-//historyButton.addEventListener("click", searchByCity);
+clearHistory.addEventListener("click", deleteSearchHistory);
+searchContainerEl.addEventListener("click", searchAgain);
