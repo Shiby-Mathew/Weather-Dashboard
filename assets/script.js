@@ -1,3 +1,4 @@
+// save reference to important DOM elements
 var searchEl = document.getElementById("submit");
 var tempEl = document.getElementById("temp");
 var windEl = document.getElementById("wind");
@@ -12,7 +13,6 @@ var weatherKey = "cb4e1eb2ddfd04be05240608cc0d201b";
 
 //Click event calling function
 function searchByCity(event) {
-  
   event.preventDefault();
   var city = document.getElementById("city-search").value.trim();
   city = city.charAt(0).toUpperCase() + city.slice(1);
@@ -97,7 +97,8 @@ function forecastWeather(lat, lon) {
 
 function displayForecast(data) {
   console.log(data);
-  var j = 0;
+  var j = 4;
+
   for (var i = 1; i < 6; i++) {
     var temp = document.getElementById("card" + i + "-temp");
     var wind = document.getElementById("card" + i + "-wind");
@@ -111,22 +112,28 @@ function displayForecast(data) {
     temp.textContent = `Temp is:  ${data.list[j].main.temp} °C`;
     wind.textContent = `Wind is:  ${data.list[j].wind.speed} km/h`;
     humid.textContent = `Humidity is:  ${data.list[j].main.humidity}%`;
-    j = j + 8;
+    j += 8;
   }
 }
 
 function saveSearchCity(cityName) {
-  var searchCity = JSON.parse(localStorage.getItem("searchCity") || "[]");
-  searchCity.push(cityName);
-  localStorage.setItem("searchCity", JSON.stringify(searchCity));
-  displaySearchCity();
+  var searchCity = JSON.parse(localStorage.getItem("searchCity")) || [];
+  if (searchCity.includes(cityName)) {
+    return;
+  } else {
+    searchCity.push(cityName);
+    localStorage.setItem("searchCity", JSON.stringify(searchCity));
+    displaySearchCity();
+  }
 }
 
 function displaySearchCity() {
+  searchContainerEl.innerHTML = "";
+
   var searchCity = JSON.parse(localStorage.getItem("searchCity")) || [];
 
   if (searchCity.length > 0) {
-    searchContainerEl.value = "";
+    // searchContainerEl.value = "";
 
     for (var i = 0; i < searchCity.length; i++) {
       var cityName = searchCity[i];
@@ -149,11 +156,10 @@ function displaySearchCity() {
 function deleteSearchHistory() {
   localStorage.clear();
   location.reload();
-  displaySearchCity();
+  // displaySearchCity();
 }
 function searchAgain(event) {
   getWeatherApi(event.target.value);
-  // console.log(event.target.value);
 }
 
 // if search city is repeating show only once as in the history button
@@ -162,3 +168,4 @@ function searchAgain(event) {
 searchEl.addEventListener("click", searchByCity);
 clearHistory.addEventListener("click", deleteSearchHistory);
 searchContainerEl.addEventListener("click", searchAgain);
+displaySearchCity();
