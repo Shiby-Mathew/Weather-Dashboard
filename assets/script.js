@@ -97,7 +97,7 @@ function forecastWeather(lat, lon) {
 
 function displayForecast(data) {
   console.log(data);
-  var j = 4;
+  var j = 0;
 
   for (var i = 1; i < 6; i++) {
     var temp = document.getElementById("card" + i + "-temp");
