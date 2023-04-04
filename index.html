@@ -19,7 +19,7 @@
     <link href="./assets/style.css" rel="stylesheet" />
     <title>Weather Dashboard</title>
   </head>
-
+  <!-- Search city -->
   <body>
     <main class="m-5 text-align-center">
       <div class="row m-0 d-block d-md-flex">
@@ -46,6 +46,7 @@
             Clear Search History
           </button>
         </section>
+        <!-- current weather -->
         <section class="col-12 col-md-9">
           <div id="current-weather" class="p-3 mb-2 d-none">
             <h2 id="current-heading">Current Weather</h2>
@@ -55,17 +56,15 @@
                 <div id="temp">Temp :</div>
                 <div id="wind">Wind :</div>
                 <div id="humid">Humidity :</div>
-                <!-- <img src="" id="card1-icon" class="card-icon"></img> -->
               </div>
               <div class="col-4" id="newElement"></div>
               <div id="current-icon" class="col-4"></div>
             </div>
           </div>
-
+          <!-- %-day forecast -->
           <div id="forecast" class="p-3 d-none">
             <h2 class="d-block">5-Day Forecast</h2>
             <div class="row justify-content-around d-block d-xl-flex mr-0">
-              <!-- text-center d-none col m-2 p-0 -->
               <div id="card1" class="text-center col m-2 p-0">
                 <div class="card-body">
                   <div id="card1-title" class="card-title"></div>

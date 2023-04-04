@@ -50,7 +50,7 @@ var getWeatherApi = function (cityName) {
       alert("Wrong City Name!!");
     });
 };
-
+// Displaying current weather
 var currrentWeather = function (data) {
   var city = data.name;
   var latitude = data.coord.lat;
@@ -95,6 +95,7 @@ function forecastWeather(lat, lon) {
     });
 }
 
+// Displaying 5-day forecast
 function displayForecast(data) {
   console.log(data);
   var j = 0;
@@ -116,6 +117,7 @@ function displayForecast(data) {
   }
 }
 
+// Save city Name in localstorage
 function saveSearchCity(cityName) {
   var searchCity = JSON.parse(localStorage.getItem("searchCity")) || [];
   if (searchCity.includes(cityName)) {
@@ -151,21 +153,25 @@ function displaySearchCity() {
     searchContainerEl.value = "";
   }
 }
-//
 
+// clear history
 function deleteSearchHistory() {
   localStorage.clear();
   location.reload();
   // displaySearchCity();
 }
+
+//city from search history
 function searchAgain(event) {
   getWeatherApi(event.target.value);
 }
 
-// if search city is repeating show only once as in the history button
-//display history in buttons and click on that button again go for search
-
+//click event from search textbox
 searchEl.addEventListener("click", searchByCity);
+
+//button click event from delete search history
 clearHistory.addEventListener("click", deleteSearchHistory);
+
+//button click event from search history button
 searchContainerEl.addEventListener("click", searchAgain);
 displaySearchCity();
