@@ -9,7 +9,7 @@ https://shiby-mathew.github.io/Weather-Dashboard/
 ## Description
 
 ```md
-This application allows user to search for a city to get the current weather and 5-day forecast. It will display the the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed. Cities that user previously looked up will be saved in their local storage.Recently viewed city name shown in the dashboard, and a button to clear local storage datas.
+This application allows user to search for a city to get the current weather and 5-day forecast. It will display city name, date, an icon representation of weather conditions, temperature, humidity, wind speed. Cities that user previously looked up will be saved in their local storage. Recently viewed city name is shown in the dashboard and a button to clear local storage data.
 ```
 
 ## User Story
@@ -38,10 +38,10 @@ THEN I am again presented with current and future conditions for that city
 
 ```
 
-* This app is a weather dashboard allows user to search for a city to see current weather and 5-day forcast.
-* It will dispaly city name, the date, an icon an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-* It will display 5-day forecast with date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-* Searched city is added to the search history and when you click on a city in the search history,it will display current and future conditions for that city
+* This app is a weather dashboard allowing user to view a city's current weather and 5-day forcast.
+* It will dispaly current weather condition - city name, date, an icon representation of weather condition, temperature, humidity, and wind speed
+* It will display 5-day forecast with date, an icon representation of weather conditions, temperature, wind speed and humidity
+* City name is added to the search history and when you click on a city in the search history, it will display current and future weather conditions for that city
 
 ```
 
