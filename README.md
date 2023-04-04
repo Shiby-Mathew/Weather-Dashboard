@@ -34,9 +34,10 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
 
-## Usage
+### Usage
 
 ```
+
 * This app is a weather dashboard allows user to search for a city to see current weather and 5-day forcast.
 * It will dispaly city name, the date, an icon an icon representation of weather conditions, the temperature, the humidity, and the wind speed
 * It will display 5-day forecast with date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
@@ -46,8 +47,18 @@ THEN I am again presented with current and future conditions for that city
 
 ## Mock-Up
 
-The following is the image of this functionality:
+The following are some images of this functionality:
 
-![Work-Day-Scheduler Image.](./assets/images/pic1.PNG)
-![Work-Day-Scheduler Image.](./assets/images/pic3.PNG)
-![Work-Day-Scheduler Image.](./assets/images/pic4.PNG)
+![Weather-dasboard first page.](./assets/images/pic1.PNG)
+
+![Weather-dasboard search result page.](./assets/images/pic3.PNG)
+
+![Weather-dasboard search history buttons.](./assets/images/pic4.PNG)
+
+### Technologies Used
+
+```
+OpenWeather API
+Bootstrap
+JavaScript
+```
